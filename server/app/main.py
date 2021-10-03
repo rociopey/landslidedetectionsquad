@@ -33,10 +33,7 @@ async def predict_trees(upload_file: UploadFile = File(...)):
         content = upload_file.file.read()
         f.write(content)
 
-    print(upload_path)
-
-    # predict trees from user image
-    # get coordinates for bounding box for each tree in image
+    # predict trees from user image and get coordinates for bounding box for each tree in image
     tree_bbox = model.predict_tile(
         upload_path,
         return_plot=False, 

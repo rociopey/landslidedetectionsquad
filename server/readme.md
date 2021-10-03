@@ -12,8 +12,10 @@ Install packages:
 pip install -r requirements.txt
 ```
 
-## Launch app
+## Launch app locally
 
 ```
 uvicorn main:app --reload
 ```
+
+
