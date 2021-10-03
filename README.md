@@ -1,0 +1,4 @@
+# landslidedetectionsquad
+A prototype that detects canopy movement on slopes, which is indicative of landslide risk
+
+Early warning of landslide events is critical to inform at-risk communities and emergency response. On forested slopes, tilting of trees and change in canopy structure can indicate soil and rock movement is occurring, which is a precursor to landslide events. Taking advantage of new sensors providing high-resolution images and deep learning technologies for tree detection, we propose and prototype a method that detects a canopy movement on slopes that’s indicative of landslide risk. This information is used to enhance landslide risk models and is embedded within a system that generates dynamic risk maps, publishes alerts when situations are critical, and supports government agencies to plan ahead for emergency situations.
