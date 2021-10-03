@@ -1,15 +1,32 @@
 <html>
   <head>
-    <title>Landslide Predcition Toolkit</title>
+    <title>Landslide Prediction Toolkit</title>
     <link rel="stylesheet" href="./assets/styles.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""/>
+     <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin=""></script>
+      <style>
+        #mapid { height: 600px; }
+      </style>
   </head>
   <body>
     <div class="header">
-      Landslide Predcition Toolkit
+      Landslide Prediction Toolkit
     </div>
     <form method="POST">
       <input type="file" name="image_src"/>
       <button type="submit">Upload</button>
+      <div id="mapid"></div>
     </form>
+    <script>
+      var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+      }).addTo(mymap);      
+    </script>
   </body>
 </html>
