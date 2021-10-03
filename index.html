@@ -22,11 +22,59 @@
       <button type="submit">Upload</button>
       <div id="mapid"></div>
     </form>
+
+    <script type="text/javascript" src="./assets/tree-predictions.js"></script>
     <script>
-      var mymap = L.map('mapid').setView([51.505, -0.09], 13);
-      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-      }).addTo(mymap);      
+
+        // Base layers
+        //  .. OpenStreetMap
+        var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors', minZoom: 0, maxZoom: 12});
+
+        // Overlay layers (TMS)
+        var lyr = L.tileLayer('./{z}/{x}/{y}.png', {tms: true, opacity: 0.7, attribution: "", minZoom: 0, maxZoom: 12});
+
+        // esri
+        var esri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+        })
+
+        // Map
+        var mymap = L.map('mapid', {
+            center: [36.321984, -121.809028],
+            zoom: 17,
+            minZoom: 0,
+            maxZoom: 18,
+            layers: [esri]
+        });
+
+    //   var mymap = L.map('mapid').setView([36.321984, -121.809028], 16);
+    //   var esri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    //     attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+    //   }).addTo(mymap);   
+
+        var style2012 = {
+            "color": "#ffff00",
+            "weight": 2.5,
+            "opacity": 0.5
+        };
+
+        var style2018 = {
+            "color": "#00ffff",
+            "weight": 2.5,
+            "opacity": 0.5
+        };
+
+        var n2012 = L.geoJSON(naip2012, {style: style2012});
+
+        var n2018 = L.geoJSON(naip2018, {style: style2018});
+
+        var overlaymaps = {"2012 Trees": n2012, "2018 Trees": n2018}
+
+        var basemaps = {"ESRI": esri, "OpenStreetMap": osm}
+        
+        L.control.layers(basemaps, overlaymaps, {collapsed: false}).addTo(mymap);
+
+
     </script>
   </body>
 </html>
