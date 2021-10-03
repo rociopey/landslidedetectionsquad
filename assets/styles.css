@@ -12,3 +12,7 @@ html, body, div {
   align-items: center;
   padding: 0 16px;
 }
+
+.map {
+  height: calc(100vh - 60px);
+}
