@@ -9,7 +9,7 @@ The FastAPI app expects a georeferenced image (e.g. GeoTIFF) as an input (POST r
 Install packages:
 
 ```
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ## Launch app locally

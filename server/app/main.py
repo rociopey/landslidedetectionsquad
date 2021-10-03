@@ -9,8 +9,6 @@ import os
 import tempfile
 import rasterio
 
-from predict_trees import predict_trees
-
 # create fastAPI app instance
 app = FastAPI()
 
